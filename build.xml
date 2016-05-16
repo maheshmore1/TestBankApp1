@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project name="JUNIT" default="main" basedir=".">
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="src.dir" location="src" />
+		<property name="lib.dir" location="lib" />
+			 <property name="classes.dir" value="web/WEB-INF/classes"/>
+	<!--<property name="test.dir" location="tests" />-->
+
+	<property name="build.dir" location="build" />
+		<!--<property name="build.test.dir" location="bin/tests" />-->
+
+	<!-- Variables used for JUnit testin -->
+
+	
+
+	<!-- Define the classpath which includes the junit.jar and the classes after compiling-->
+	<path id="junit.class.path">
+		<!--<pathelement location="lib/*.jar" />
+		<pathelement location="${build.dir}" />-->
+	   <pathelement location="web/WEB-INF/lib/*.jar" />
+	</path>
+
+	   	<path id="classpath">
+	   			        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+	   			</path>
+	<!-- Deletes the existing build, docs and dist directory-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${classes.dir}/com" />
+		
+	</target>
+
+	<!-- Creates the  build, docs and dist directory-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}"/>
+		<!--<mkdir dir="${build.test.dir}" />-->
+	
+	</target>
+
+	<!-- Compiles the java code (including the usage of library for JUnit -->
+	
+	<target name="compile" depends="clean, makedir">
+		 <mkdir dir="${classes.dir}"/>
+		<javac srcdir="${src.dir}"  destdir="${classes.dir}" classpathref="classpath" includeantruntime="false">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+				
+				
+
+		<target name="war" depends="compile" description="Bundles the application as a WAR file" >
+				
+				
+				<!--<copy includeemptydirs="false" todir="build/classes">
+			    		<fileset dir="build/classes">
+						<include name="**/*.class"/>
+			    		</fileset>
+				</copy>needxmlfile="false"
+				-->
+				
+				<war destfile="WebBankApp.war"
+					basedir="web"
+					>
+				</war>
+			</target>
+
+	<!--<target name="main" depends="compile, junit">-->
+	<target name="main" depends="war">
+		<description>Main target</description>
+	</target>
+
+</project>

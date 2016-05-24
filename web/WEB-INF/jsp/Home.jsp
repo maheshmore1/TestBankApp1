@@ -13,7 +13,7 @@
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title>The Best Bank of SkyTap</title>
+        <title>The Best Bank of SkyTap .</title>
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
             <!-- Optional theme -->
